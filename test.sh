@@ -1,10 +1,6 @@
 #!/bin/bash
 
-source ./die_test.sh
-source ./die_test_auto.sh
-source ./no_die_test.sh
-source ./no_die_test_auto.sh
-source ./run_helgrind_tests.sh
+source ./load_scripts.sh
 source ./colors.sh
 
 # Counters
