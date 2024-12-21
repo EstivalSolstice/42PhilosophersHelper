@@ -31,7 +31,7 @@ no_die_test_auto ()
 			(( FAIL++ ))
 		fi
 		(( TESTS++ ))
-	done 3< ./no-die.txt   # open file is assigned fd 3
+	done 3< ./data/no-die.txt   # open file is assigned fd 3
 	printf "\nNo-Die Tests: ${GREEN}PASSED${RESET}: $PASS/$TESTS | ${RED}FAILED${RESET}: $FAIL/$TESTS\n"
 	exec 3<&-	# close fd 3
 }

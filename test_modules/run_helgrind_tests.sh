@@ -2,6 +2,13 @@
 
 run_helgrind()
 {
+	if ! command -v valgrind &> /dev/null; then
+	local RED='\033[0;31m'
+	local RESET='\033[0m'
+	echo -e "${RED}Error: Helgrind is not installed. Please install Valgrind to run Helgrind tests.${RESET}"
+	return 1
+	fi
+
 	if [[ -z "$1" ]]; then
 		echo -e "${RED}Error: No executable provided.${RESET}"
 		return 1

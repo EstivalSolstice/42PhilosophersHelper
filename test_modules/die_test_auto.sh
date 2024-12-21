@@ -14,6 +14,6 @@ die_test_auto ()
 		else
 			printf "${RED}KO${RESET}\n"
 		fi
-	done 3< ./yes-die.txt   # open file is assigned fd 3
+	done 3< ./data/yes-die.txt   # open file is assigned fd 3
 	exec 3<&- # close fd 3
 }
