@@ -51,12 +51,7 @@ Helgrind is used to detect potential threading issues in your `philo` program. H
 ### Setting up Docker for Helgrind Tests
 1. **Install Docker**: Ensure you have Docker installed on your system. If not, you can follow the installation guide [here](https://docs.docker.com/get-docker/).
 2. **Start Docker**: Make sure Docker is running before proceeding with the tests.
-3. **Run Helgrind Tests**:
-   Use the provided script to run Helgrind within the Docker container. For example:
-   ```bash
-   ./run_helgrind_tests.sh
-   ```
-   This script ensures Helgrind is executed in the appropriate environment and checks your program for threading issues.
+3. **Run Helgrind Tests**: During the test selection, choose the option `Check Data Races && Deadlocks`. This will trigger the Helgrind checks within a Docker container.
 
 ### Notes
 - Helgrind tests are optional but highly recommended for catching concurrency-related bugs.
