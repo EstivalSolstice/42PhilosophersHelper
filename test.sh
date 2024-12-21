@@ -1,15 +1,11 @@
 #!/bin/bash
 
-# Colours
-BOLD="\033[0;1m"
-RED="\033[0;31m"
-CYAN="\033[0;36m"
-PURP="\033[0;35m"
-GREEN="\033[0;32m"
-BLUE="\033[0;34m"
-BLUEBG="\033[44m"
-WHITE="\033[1;97m"
-RESET="\033[0m"
+source ./die_test.sh
+source ./die_test_auto.sh
+source ./no_die_test.sh
+source ./no_die_test_auto.sh
+source ./run_helgrind_tests.sh
+source ./colors.sh
 
 # Counters
 PASS=0
@@ -52,72 +48,23 @@ draw_progress_bar() {
   printf "] $__percentage%% ($__value / $__max $__unit)\r"
 }
 
-die_test () {
-	printf "\n${CYAN}=== Starting tests where program should end with death or enough eaten ===\n${RESET}"
-	while IFS="" read -r -u 3 input || [ -n "$input" ]	# read input from fd 3
-	do
-		read -r -u 3 result	# read desired result description from input.txt
-		printf "\nTest: ${BLUEBG}${WHITE}[$input]${RESET} | ${PURP}$result${RESET}\n\n"	
-		read -rs -n 1 -p $'Press ENTER to start test, press any other key to exit tester...\n' key  # read from stdin, accepting only 1 char
-		if [[ $key == "" ]] ; then
-			printf "\n"
-			$1 $input	# run ./philo with test case input
-		else
-			exit 0
-		fi
-	done 3< ./yes-die.txt   # open file is assigned fd 3
-	exec 3<&-	# close fd 3
-}
-
-no_die_test () {
-	printf "\n${CYAN}=== Starting tests where a philosopher should NOT die ===\n${RESET}"
-	read -r -p $'\nPlease enter desired timer for tests or press ENTER to use default 10 seconds: ' timeout
-	printf "\n"
-	if [[ $timeout != *[[:digit:]]* ]]; then
-		timeout=10
-	fi
-	while IFS="" read -r -u 3 input || [ -n "$input" ] # read input from fd 3
-	do
-		read -r -u 3 result    # read desired result description from input.txt
-		printf "\nTest: ${BLUEBG}${WHITE}[$input]${RESET} | ${PURP}$result${RESET}\n\n"
-		read -rs -n 1 -p $'Press ENTER to start test, press any other key to exit tester...\n' key   # read from stdin, accepting only 1 char
-		if [[ $key == "" ]] ; then
-			printf "\n"
-			./PhilosophersChecker.py "$1 $input" $timeout > /dev/null & pid=$!   # silence checker output and run in bg
-			local elapsed=0
-			while ps -p $pid &>/dev/null; do    # check if checker script still running
-				draw_progress_bar $elapsed $timeout "seconds" # TODO: fix extra space at end of progress bar, extra )
-				if [[ $elapsed == $timeout ]]; then
-					printf "\n\n${GREEN}OK${RESET}\n"
-					(( PASS++ ))
-					break;
-				fi
-				(( elapsed++ ))
-				sleep 1
-			done
-			wait $pid
-			status=$?
-			if [[ $status != 0 ]]; then
-				printf "\n\n${RED}KO${RESET} - program terminated prematurely\n"
-				(( FAIL++ ))
-			fi
-		else
-			printf "\n${GREEN}PASSED${RESET}: $PASS/$TESTS | ${RED}FAILED${RESET}: $FAIL/$TESTS\n"
-			exit 0
-		fi
-		(( TESTS++ ))
-	done 3< ./no-die.txt   # open file is assigned fd 3
-	printf "\nNo-Die Tests: ${GREEN}PASSED${RESET}: $PASS/$TESTS | ${RED}FAILED${RESET}: $FAIL/$TESTS\n"
-	exec 3<&-	# close fd 3
-}
-
 choose_test() {
-    read -rn1 -p $'\nChoose test to run:\n\t[0] all tests\n\t[1] die tests\n\t[2] no-die tests (can take a while)\n\t[ESC] exit tester\n\n' choice
+	read -rn1 -p $'\nChoose test to run:\t
+	[0] all tests\t
+	[1] die tests\t
+	[2] no-die tests (can take a while)\t
+	[3] no-die tests (auto)\t
+	[4] all tests (auto)\t
+	[5] check data races && deadlocks \t
+	[ESC] exit tester\n\n' choice
     printf "\n"
     case $choice in
         0) die_test "$1" && no_die_test "$1" ;;
         1) die_test "$1" ;;
         2) no_die_test "$1" ;;
+		3) no_die_test_auto "$1" ;;
+		4) die_test_auto "$1" && no_die_test_auto "$1" ;;
+		5) run_helgrind "$1";;
         $'\e') exit 0 ;;
         *) printf "${RED}Invalid choice\n${RESET}"; choose_test "$1" ;;
     esac

@@ -1,0 +1,4 @@
+5 800 200 200 7
+no one should die, simulation should stop after 7 eats
+4 410 200 200 10
+no one should die, simulation should stop after 10 eats

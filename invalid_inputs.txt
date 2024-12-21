@@ -1,0 +1,20 @@
+-5 600 200 200
+should error and not run (no crashing)
+4 -5 200 200
+should error and not run (no crashing)
+4 600 -5 200
+should error and not run (no crashing)
+4 600 200 -5
+should error and not run (no crashing)
+4 600 200 200 -5
+should error and not run (no crashing)
+4 999999999999999 200 200
+should error and not run (no crashing)
+4 abdallah 200 200 3
+should error and not run (no crashing)
+4 100 abdallah 200 3
+should error and not run (no crashing)
+4 100 800 abdallah 200 3
+should error and not run (no crashing)
+4 100 800 200 200 abdallah
+should error and not run (no crashing)
