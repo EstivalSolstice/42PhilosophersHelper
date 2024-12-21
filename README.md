@@ -49,7 +49,7 @@ no one should die, simulation should stop after 7 eats
 Helgrind is used to detect potential threading issues in your `philo` program. However, running Helgrind requires a Docker environment due to its specific setup requirements. 
 
 ### Setting up Docker for Helgrind Tests
-1. **Install Docker**: Ensure you have Docker installed on your system. If not, you can follow the installation guide [here](https://docs.docker.com/get-docker/).
+1. **Install Docker**: Ensure you have Docker installed on your system. If not, you can follow the installation guide [here](https://github.com/Scarletsang/Dorker).
 2. **Start Docker**: Make sure Docker is running before proceeding with the tests.
 3. **Run Helgrind Tests**: During the test selection, choose the option `Check Data Races && Deadlocks`. This will trigger the Helgrind checks within a Docker container.
 
