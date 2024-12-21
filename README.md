@@ -44,6 +44,24 @@ a philo should die
 no one should die, simulation should stop after 7 eats
 ```
 
+### Helgrind Testing
+
+Helgrind is used to detect potential threading issues in your `philo` program. However, running Helgrind requires a Docker environment due to its specific setup requirements. 
+
+#### Setting up Docker for Helgrind Tests
+1. **Install Docker**: Ensure you have Docker installed on your system. If not, you can follow the installation guide [here](https://docs.docker.com/get-docker/).
+2. **Start Docker**: Make sure Docker is running before proceeding with the tests.
+3. **Run Helgrind Tests**:
+   Use the provided script to run Helgrind within the Docker container. For example:
+   ```bash
+   ./run_helgrind_tests.sh
+   ```
+   This script ensures Helgrind is executed in the appropriate environment and checks your program for threading issues.
+
+#### Notes
+- Helgrind tests are optional but highly recommended for catching concurrency-related bugs.
+- Ensure your program compiles correctly and all dependencies are included before running the tests.
+
 ## Credits
 Timed-checker Python script ```PhilosophersChecker.py``` [(link)](https://gist.github.com/jkctech/367fad4aa01c820ffb1b8d29d1ecaa4d) was written by [JKCTech](https://gist.github.com/jkctech) and modified slightly by me to take an optional timer duration.  
 [Progress bar function](https://stackoverflow.com/a/52581824) written by Vagiz Duseev, found on StackOverflow.
