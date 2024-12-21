@@ -52,15 +52,19 @@ choose_test() {
 	[3] no-die tests (auto)\t
 	[4] all tests (auto)\t
 	[5] check data races && deadlocks \t
+	[6] check invalid input (auto)\t
 	[ESC] exit tester\n\n' choice
     printf "\n"
     case $choice in
-        0) die_test "$1" && no_die_test "$1" ;;
+        0) die_test "$1" && no_die_test "$1";;
         1) die_test "$1" ;;
         2) no_die_test "$1" ;;
 		3) no_die_test_auto "$1" ;;
-		4) die_test_auto "$1" && no_die_test_auto "$1" ;;
+		# 4) check_invalid_inputs "$1" && check_limited_meals "$1" && 
+		# 	die_test_auto "$1" && no_die_test_auto "$1";;
+		4) check_limited_meals "$1";;
 		5) run_helgrind "$1";;
+		6) check_invalid_inputs "$1";;
         $'\e') exit 0 ;;
         *) printf "${RED}Invalid choice\n${RESET}"; choose_test "$1" ;;
     esac
