@@ -5,7 +5,7 @@ no_die_test ()
 	printf "\n${CYAN}=== Starting tests where a philosopher should NOT die ===\n${RESET}"
 	read -r -p $'\nPlease enter desired timer for tests or press ENTER to use default 10 seconds: ' timeout
 	printf "\n"
-	if [[ $timeout != *[[:digit:]]* ]]; then
+	if [[ $timeout != *[[:digit:]]* || $timeout -le 0 ]]; then
 		timeout=10
 	fi
 	while IFS="" read -r -u 3 input || [ -n "$input" ] # read input from fd 3
