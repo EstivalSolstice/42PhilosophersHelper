@@ -1,7 +1,8 @@
 #!/bin/bash
 
 source ./load_scripts.sh
-source ./colors.sh
+source ./setup/colors.sh
+source ./setup/constants.sh
 
 # Counters
 PASS=0
@@ -62,7 +63,7 @@ choose_test() {
         2) no_die_test "$1" ;;
 		3) no_die_test_auto "$1" ;;
 		4) check_invalid_inputs "$1" && check_limited_meals "$1" && 
-			die_test_auto "$1" && no_die_test_auto "$1";;
+			die_test_auto "$1" && no_die_test_auto "$1" && check_timestamps "$1";;
 		# 4) check_limited_meals "$1";;
 		5) run_helgrind "$1";;
 		6) check_invalid_inputs "$1";;

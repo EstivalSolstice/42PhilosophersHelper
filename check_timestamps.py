@@ -11,6 +11,10 @@ def strip_ansi_codes(line):
     ansi_escape = re.compile(r'\x1b\[[0-9;]*m')
     return ansi_escape.sub('', line)
 
+def sanitize_filename(name):
+    # Replace unsafe characters with underscores
+    return "".join(c if c.isalnum() or c in "-_." else "_" for c in name)
+
 def check_timestamps_ascending(file_path):
     try:
         with open(file_path, "r") as f:
@@ -65,6 +69,7 @@ if __name__ == "__main__":
 
     executable = sys.argv[1]
     args = sys.argv[2:]  # Remaining arguments passed to the program
-    output_file = "output.txt"  # Default output file
+    arg_str = "_".join(args) if args else "default"
+    output_file = f"output_{sanitize_filename(arg_str)}.txt"  # Custom output file
     result = run_program_and_check(executable, args, output_file)
     sys.exit(0 if result else 1)

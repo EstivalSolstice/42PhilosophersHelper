@@ -21,7 +21,7 @@ run_helgrind()
 	for i in $(seq 2 10); do
 		echo "Running Helgrind for test: $1 $i 800 200 200 3"	
 		# Run Helgrind and capture the output
-		output=$(valgrind --tool="$FLAG" "$1" $i 800 200 200 3 2>&1)
+		output=$(valgrind --tool="$FLAG" "$1" $i $TIME_TO_DIE_H $TIME_TO_EAT_H $TIME_TO_SLEEP_H $NBR_MEALS_H 2>&1)
 		echo "$output" > helgrind_output_"$i".txt	
 		# Extract the error summary using grep and awk
 		error_summary=$(echo "$output" | grep "ERROR SUMMARY:" | awk '{print $4}')	
