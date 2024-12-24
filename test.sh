@@ -48,7 +48,7 @@ draw_progress_bar() {
 choose_test() {
 	read -rn1 -p $'\nChoose test to run:\t
 	[0] all tests\t
-	[1] die tests\t
+	[1] die tests (auto)\t
 	[2] no-die tests (can take a while)\t
 	[3] no-die tests (auto)\t
 	[4] all tests (auto)\t
@@ -59,7 +59,7 @@ choose_test() {
     printf "\n"
     case $choice in
         0) die_test "$1" && no_die_test "$1";;
-        1) die_test "$1" ;;
+        1) die_test_auto "$1" ;;
         2) no_die_test "$1" ;;
 		3) no_die_test_auto "$1" ;;
 		4) check_invalid_inputs "$1" && check_limited_meals "$1" && 

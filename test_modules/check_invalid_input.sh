@@ -19,26 +19,34 @@ check_invalid_inputs()
     local passed=0
     local failed=0
 	local total=0
-
+    local line_number=0
     while IFS="" read -r line || [[ -n "$line" ]]; do
+        # Increment line counter
+        ((line_number++))
+
+        # Skip odd-numbered lines
+        if (( line_number % 2 != 1 )); then
+            continue
+        fi
+
         # Skip empty lines
         if [[ -z "$line" ]]; then
             continue
         fi
 
-        # Run the program with the invalid input
-        echo "Testing invalid input: $line"
-        output=$($1 $line 2>&1)
-        exit_code=$?
-
-        # Check the result: OK if the program exits with an error code but doesn't crash
-        if [[ $exit_code -ne 0 ]]; then
-            echo -e "${GREEN}OK: Handled invalid input correctly.${RESET}"
-            ((passed++))
-        else
-            echo -e "${RED}KO: Program did not handle invalid input correctly.${RESET}"
-            ((failed++))
-        fi
+		# Run the program with the invalid input
+		echo "Testing invalid input: $line"
+		output=$($1 $line 2>&1)
+		exit_code=$?
+		# echo $output
+		# Check the result: OK if the program exits with an error code but doesn't crash
+		if [[ $exit_code -ne 0 && "$output" == *"Invalid"* ]]; then
+			echo -e "${GREEN}OK: Handled invalid input correctly.${RESET}"
+			((passed++))
+		else
+			echo -e "${RED}KO: Program did not handle invalid input correctly.${RESET}"
+			((failed++))
+		fi
     done < ./data/invalid_input.txt
 	total=$((passed+failed))
     echo -e "${CYAN}=== Invalid input tests completed ===${RESET}"
