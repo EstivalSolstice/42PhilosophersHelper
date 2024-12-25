@@ -51,10 +51,10 @@ choose_test() {
 	[1] die tests (auto)\t
 	[2] no-die tests (can take a while)\t
 	[3] no-die tests (auto)\t
-	[4] all tests (auto)\t
+	[4] The Chaos Feast (auto)\t
 	[5] check data races && deadlocks \t
 	[6] check invalid input (auto)\t
-	[7] check timestamps \t
+	[7] check timestamps - The Chefs Special \t
 	[ESC] exit tester\n\n' choice
     printf "\n"
     case $choice in
@@ -67,13 +67,13 @@ choose_test() {
 		# 4) check_limited_meals "$1";;
 		5) run_helgrind "$1";;
 		6) check_invalid_inputs "$1";;
-        7) check_timestamps "$1";;
+        7) check_timestamps "$1" && process_files;;
         $'\e') exit 0 ;;
         *) printf "${RED}Invalid choice\n${RESET}"; choose_test "$1" ;;
     esac
 }
 
-printf "${BOLD}\n💭 The Lazy Philosophers Tester 💭\n${RESET}"
+printf "${BOLD}\n💭 The 42Philosophers Helper 💭\n${RESET}"
 printf "\nThis tester allows you to test:\n\n"
 printf "\t1. when your program should stop on death or when all philos have eaten enough\n"
 printf "\t- to be checked manually by the user, based on the expected result listed in yes-die.txt.\n\n"

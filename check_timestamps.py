@@ -25,11 +25,14 @@ def check_timestamps_ascending(file_path):
         nbr_errors = 0
         for line in lines:
             cleaned_line = strip_ansi_codes(line)  # Remove ANSI codes
-            match = re.match(r"(\d+)", cleaned_line)  # Match the first number after stripping ANSI codes
+            matches = re.findall(r"\d+", cleaned_line)  # Find all numbers in the line
+            if len(matches) >= 2:
+                 match = int(matches[0])
+                 philo_id = int(matches[1])
             if match:
-                current_timestamp = int(match.group(1))
+                current_timestamp = match
                 if current_timestamp < previous_timestamp:
-                    print(f"{RED}Error: Timestamp {current_timestamp} in line {line_idx} is not in ascending order {RESET}")
+                    print(f"{RED}Error: Timestamp {current_timestamp} [{philo_id}] in line {line_idx} is not in ascending order {RESET}")
                     nbr_errors += 1
                 previous_timestamp = current_timestamp
             line_idx += 1

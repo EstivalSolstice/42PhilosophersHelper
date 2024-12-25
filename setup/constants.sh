@@ -1,6 +1,6 @@
 
 # check_timestamps
-readonly MINI_PHILOS=100
+readonly MINI_PHILOS=10
 readonly MAX_PHILOS=200
 readonly STEP=10
 readonly TIME_TO_DIE=400
