@@ -20,7 +20,7 @@ This tool streamlines testing, identifies potential threading issues, and saves 
 
 More tests can be added by editing the appropriate ```.txt``` files with the input and expected outcome.
 
-![screenshot of tester being run](https://i.imgur.com/iAfsRWM.png)
+![screenshot of tester being run](helper_case_2.png)
 
 ## Installation
 
