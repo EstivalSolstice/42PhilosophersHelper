@@ -47,36 +47,54 @@ draw_progress_bar() {
 
 choose_test() {
 	read -rn1 -p $'\nChoose test to run:\t
-	[0] all tests\t
-	[1] die tests (auto)\t
-	[2] no-die tests (can take a while)\t
-	[3] no-die tests (auto)\t
-	[4] The Chaos Feast (auto)\t
-	[5] check data races && deadlocks \t
-	[6] check invalid input (auto)\t
+	[1] check invalid input (auto)\t
+	[2] die tests (auto)\t
+	[3] no-die limited meals test (auto)\t
+	[4] no-die tests (can take a while)\t
+	[5] no-die tests (auto)\t
+	[6] check data races && deadlocks (needs docker) \t
 	[7] check timestamps - The Chefs Special \t
+	[8] The Chaos Feast (auto)\t
 	[ESC] exit tester\n\n' choice
     printf "\n"
     case $choice in
-        0) die_test "$1" && no_die_test "$1";;
-        1) die_test_auto "$1" ;;
-        2) no_die_test "$1" ;;
-		3) no_die_test_auto "$1" ;;
-		4) check_invalid_inputs "$1" && check_limited_meals "$1" && 
-			die_test_auto "$1" && no_die_test_auto "$1" && check_timestamps "$1";;
-		# 4) check_limited_meals "$1";;
-		5) run_helgrind "$1";;
-		6) check_invalid_inputs "$1";;
+		1) check_invalid_inputs "$1";;
+        2) die_test_auto "$1" ;;
+		3) check_limited_meals "$1";;
+        4) no_die_test "$1" ;;
+		5) no_die_test_auto "$1" ;;
+		6) run_helgrind "$1";;
         7) check_timestamps "$1" && process_files;;
+		8) check_invalid_inputs "$1" && check_limited_meals "$1" && 
+			die_test_auto "$1" && no_die_test_auto "$1" && check_timestamps "$1" && process_files;;
         $'\e') exit 0 ;;
         *) printf "${RED}Invalid choice\n${RESET}"; choose_test "$1" ;;
     esac
 }
 
 printf "${BOLD}\n💭 The 42Philosophers Helper 💭\n${RESET}"
+printf " ____  _     _ _                       _                   \n";
+printf "|  _ \| |__ (_) | ___  ___  ___  _ __ | |__   ___ _ __ ___ \n";
+printf "| |_) | '_ \| | |/ _ \/ __|/ _ \| '_ \| '_ \ / _ \ '__/ __|\n";
+printf "|  __/| | | | | | (_) \__ \ (_) | |_) | | | |  __/ |  \__ \\ \n";
+printf "|_|   |_| |_|_|_|\___/|___/\___/| .__/|_| |_|\___|_|  |___/\n";
+printf "                                |_|    by Abdallah Zerfaoui\n\n";
 printf "\nThis tester allows you to test:\n\n"
-printf "\t1. when your program should stop on death or when all philos have eaten enough\n"
-printf "\t- to be checked manually by the user, based on the expected result listed in yes-die.txt.\n\n"
-printf "\t2. when no philosophers should die\n"
-printf "\t- this is checked automatically if the program runs for x seconds (default 10) without death.\n"
+printf "\ta. Invalid input handling\n"
+printf "\t- checks if the program handles invalid input correctly.\n\n"
+printf "\tb. when philosophers should die\n"
+printf "\t- checks if the program stops when a philosopher dies in the expected time.\n\n"
+printf "\tc. when no philosophers should die\n"
+printf "\t- checks if the program runs for a certain time without any philosopher dying.\n"
+printf "\t with and without number of meals limitation.\n\n"
+printf "\td. check for data races and deadlocks\n"
+printf "\t- using helgrind, drd, and sanitizer.\n\n"
+printf "\te. check timestamps\n"
+printf "\t- checks if the program runs for a certain time without mixing timestamps\n\n"
+printf "\tf. The Chaos Feast\n"
+printf "\t- runs all tests in sequence.\n\n"
+# printf "\t1. when your program should stop on death or when all philos have eaten enough\n"
+# printf "\t- to be checked manually by the user, based on the expected result listed in yes-die.txt.\n\n"
+# printf "\t2. when no philosophers should die\n"
+# printf "\t- this is checked automatically if the program runs for x seconds (default 10) without death.\n"
 choose_test "$1"

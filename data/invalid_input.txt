@@ -42,3 +42,19 @@ should error and not run (no crashing)
 should error and not run (no crashing)
 4 300 100 100 abdallah
 should error and not run (no crashing)
+9 400 100 100 ""
+should error and not run (no crashing)
+9 400 100 "" 5 
+should error and not run (no crashing)
+9 400 "" 100 5 
+should error and not run (no crashing)
+9 "" 100 100 5 
+should error and not run (no crashing)
+18446744073709551626 800 200 200 5
+should error and not run (no crashing) - may act as the case 10 800 200 200 5 
+9 18446744073709552016 100 100 5
+should error and not run (no crashing)
+9 400 100 18446744073709551726 5 
+should error and not run (no crashing)
+9 400 18446744073709551726 100 5 
+should error and not run (no crashing)
