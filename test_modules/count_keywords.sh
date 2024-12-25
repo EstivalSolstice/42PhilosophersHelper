@@ -25,10 +25,9 @@ count_keywords() {
 
 	# Difference between max and min
 	local color="\033[0;31m"
-    local diff=$((max - min))
 
     # Set color based on diff
-    if [[ $sum -gt $((4 * NBR_MEALS * $nbr_philos)) ]]; then
+    if [[ $sum -gt $((4 * NBR_MEALS * $nbr_philos)) && $fork_count -eq $eating_count ]]; then
         color="\033[0;32m"
     fi
 	# Output the results

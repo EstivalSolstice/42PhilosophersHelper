@@ -1,4 +1,4 @@
-1 800 200 200
+200 122 60 60
 a philo should die
 4 310 200 100
 a philo should die
@@ -17,4 +17,6 @@ a philo should die
 5 800 400 300 2
 a philo should die
 2 600 500 200
+a philo should die
+1 800 200 200
 a philo should die

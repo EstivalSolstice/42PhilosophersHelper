@@ -42,7 +42,7 @@ check_limited_meals()
 
         # Count occurrences of "is eating"
         local eat_count=$(echo "$output" | grep -c "is eating")
-		printf "Eating count: $eat_count\n"
+		# printf "Eating count: $eat_count\n"
 
         # Check the result: OK if eat_count >= nbr_philo * nbr_meals and no errors
 		total_meals=$((nbr_philo * nbr_meals))

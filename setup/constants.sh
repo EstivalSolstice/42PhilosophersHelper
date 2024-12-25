@@ -1,6 +1,6 @@
 
 # check_timestamps
-readonly MINI_PHILOS=100
+readonly MINI_PHILOS=180
 readonly MAX_PHILOS=200
 readonly STEP=10
 readonly TIME_TO_DIE=400
@@ -10,6 +10,9 @@ readonly NBR_MEALS=10
 
 #no_die_test_auto
 readonly DEFAULT_TIMEOUT=10
+
+#die_test_auto
+readonly MAX_RETRIES=20
 
 #run_helgrind_tests
 readonly FLAG=helgrind
