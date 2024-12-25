@@ -48,7 +48,7 @@ draw_progress_bar() {
 choose_test() {
 	read -rn1 -p $'\nChoose test to run:\t
 	[1] check invalid input (auto)\t
-	[2] die tests (auto)\t
+	[2] die tests - auto (can take a while)\t
 	[3] no-die limited meals test (auto)\t
 	[4] no-die tests (can take a while)\t
 	[5] no-die tests (auto)\t
