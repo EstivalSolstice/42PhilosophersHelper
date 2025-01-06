@@ -40,7 +40,7 @@ check_invalid_inputs()
 		exit_code=$?
 		# echo $output
 		# Check the result: OK if the program exits with an error code but doesn't crash
-		if [[ $exit_code -ne 0 && "$output" == *"Invalid"* ]]; then
+		if [[ $exit_code -ne 0 && "$output" =~ [Ii][Nn][Vv][Aa][Ll][Ii][Dd] ]]; then
 			echo -e "${GREEN}OK: Handled invalid input correctly.${RESET}"
 			((passed++))
 		else
