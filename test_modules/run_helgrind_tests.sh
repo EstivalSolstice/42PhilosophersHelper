@@ -18,7 +18,7 @@ run_helgrind()
 	local RESET='\033[0m'
 	local FLAG=helgrind # or drd, helgrind	
 	rm -f helgrind_output_*.txt
-	for i in $(seq 2 10); do
+	for i in $(seq $MIN_PHILOS_H $MAX_PHILOS_H); do
 		echo "Running Helgrind for test: $1 $i 800 200 200 3"	
 		# Run Helgrind and capture the output
 		output=$(valgrind --tool="$FLAG" "$1" $i $TIME_TO_DIE_H $TIME_TO_EAT_H $TIME_TO_SLEEP_H $NBR_MEALS_H 2>&1)
