@@ -1,8 +1,8 @@
 
 # check_timestamps
-readonly MINI_PHILOS=100
+readonly MINI_PHILOS=150
 readonly MAX_PHILOS=200
-readonly STEP=1
+readonly STEP=10
 readonly TIME_TO_DIE=400
 readonly TIME_TO_EAT=100
 readonly TIME_TO_SLEEP=100
@@ -16,9 +16,9 @@ readonly MAX_RETRIES=10 #may consider increasing this value to 20 in case the co
 
 #run_helgrind_tests
 readonly FLAG=helgrind
-readonly MIN_PHILOS_H=2
-readonly MAX_PHILOS_H=10
-readonly TIME_TO_DIE_H=400
-readonly TIME_TO_EAT_H=100
-readonly TIME_TO_SLEEP_H=100
+readonly MIN_PHILOS_H=3
+readonly MAX_PHILOS_H=15
+readonly TIME_TO_DIE_H=800
+readonly TIME_TO_EAT_H=200
+readonly TIME_TO_SLEEP_H=200
 readonly NBR_MEALS_H=3

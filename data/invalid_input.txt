@@ -8,6 +8,16 @@ should error and not run (no crashing)
 should error and not run (no crashing)
 4 600 200 200 -5
 should error and not run (no crashing)
+4a 600 200 200 5
+should error and not run (no crashing)
+4 600f 200 200 5
+should error and not run (no crashing)
+4 600 200dsd 200 5
+should error and not run (no crashing)
+4 600 200 200sfsd 5fs
+should error and not run (no crashing)
+4 600 200 200 5
+should error and not run (no crashing)
 4 999999999999999 200 200
 should error and not run (no crashing)
 4 abdallah 200 200 3
