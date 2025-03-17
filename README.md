@@ -24,43 +24,50 @@ More tests can be added by editing the appropriate ```.txt``` files with the inp
 
 ## Installation
 
-1. Clone the repository into the root directory of your **Philosophers** project:
+1. Clone the repository in your root directory:
 
     ```bash
-    git clone https://github.com/AbdallahZerfaoui/42PhilosophersHelper.git
+    git clone https://github.com/YOUR-REPO/philotest.git ~/bin/philotest
     ```
 
-2. Ensure your `philo` executable is ready by running `make` in your project directory.
+2. Ensure **42PhilosophersHelper** is executable by running:
 
-3. Navigate to the **42PhilosophersHelper** directory:
+	```bash
+	chmod +x ~/bin/philotest/test.sh
+	```
+
+3. Add **42PhilosophersHelper** to Your Shell (.zshrc or .bashrc)
 
     ```bash
-    cd 42PhilosophersHelper
+    echo 'alias philotest="~/bin/philotest/test.sh"' >> ~/.zshrc
+	source ~/.zshrc
+
+	echo 'alias philotest="~/bin/philotest/test.sh"' >> ~/.bashrc
+	source ~/.bashrc
     ```
+4. One-Time-Setup
+
+	```bash
+	# Clone the tester into ~/bin
+	git clone https://github.com/YOUR-REPO/philotest.git ~/bin/philotest
+
+	# Make sure it's executable
+	chmod +x ~/bin/philotest/test.sh
+
+	# Add 'philotest' command to your shell
+	echo 'alias philotest="~/bin/philotest/test.sh"' >> ~/.zshrc && source ~/.zshrc  # For zsh
+	echo 'alias philotest="~/bin/philotest/test.sh"' >> ~/.bashrc && source ~/.bashrc  # For bash
+	```
 
 ## Usage
 
-If you haven't already, run ```make``` in your philo directory to create your ```./philo``` executable.  
-Then from within the LazyPhilosophersTester directory, run ```./test.sh``` to start the tester.  
-Tester takes an optional 2nd argument of the path to your ```philo``` executable.  
-
-Example:  
-```bash
-./test.sh ../philo
-```
-If not provided, the tester assumes the path is ```../philo``` - i.e. in same directory as tester directory.
-
-
-### Arguments
-
-- The script takes an optional argument for the path to your `philo` executable. 
-- If not provided, it assumes the default path (`../philo`).
-
-#### Example:
+Now you can run **42PhilosophersHelper** from anywhere! Simply go into your project folder and run:
 
 ```bash
-./test.sh ../philo
+philotest
 ```
+
+If the project is not compiled already, **42PhilosophersHelper** will try to do it for you. So make sure your Makefile works properly!
 
 ### Custom Timer for Tests
 
